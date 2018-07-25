@@ -63,3 +63,45 @@ btnEl.onclick = function (event) {
 function saveToStorage () {
 	localStorage.setItem('list_todos', JSON.stringify(todos)); 
 }
+
+
+// Requisição AJAX
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.github.com/users/brunoBrian'); //Buscar informação
+xhr.send(null);
+
+xhr.onreadystatechange = function () {
+	if (xhr.readyState === 4) {
+		var response = JSON.parse(xhr.responseText);
+		console.log(response.login);
+	}
+}
+
+
+
+// Promise
+var minhaPromise = function () {
+	return new Promise(function(resolve, reject) {
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'https://api.github.com/users/brunoBrian'); //Buscar informação
+		xhr.send(null);
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					resolve(JSON.parse(xhr.responseText));
+				} else {
+					reject('Erro na requisição!');
+				}
+			}
+		}
+	});
+}
+
+minhaPromise()
+	.then(function (response) {
+		console.log(response);
+	})
+	.catch(function (error) {
+		console.warn(error);
+	});

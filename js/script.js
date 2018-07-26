@@ -66,6 +66,7 @@ function saveToStorage () {
 
 
 // Requisição AJAX
+
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://api.github.com/users/brunoBrian'); //Buscar informação
 xhr.send(null);
@@ -73,10 +74,9 @@ xhr.send(null);
 xhr.onreadystatechange = function () {
 	if (xhr.readyState === 4) {
 		var response = JSON.parse(xhr.responseText);
-		console.log(response.login);
+		console.log(response);
 	}
 }
-
 
 
 // Promise
@@ -107,8 +107,6 @@ minhaPromise()
 	});
 
 
-
-
 // Axios
 axios.get('https://api.github.com/users/brunoBrian')
 	.then(function (response) {
@@ -118,3 +116,27 @@ axios.get('https://api.github.com/users/brunoBrian')
 		console.warn(error);
 	});
 
+
+// Exercícios
+
+function checaIdade(idade) {
+	return new Promise (function(resolve, reject) {
+	  	if(idade >= 18) {
+	  		setTimeout(function(){
+	  			resolve('É maior de idade');
+	  		}, 2000);
+	  	} else {
+	  		setTimeout(function(){
+	  			reject('É menor de idade');
+	  		}, 2000);
+	  	}
+    });
+}
+
+checaIdade(18)
+  .then(function (response) {
+		console.log(response);
+	})
+	.catch(function (error) {
+		console.warn(error);
+	});

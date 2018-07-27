@@ -38,12 +38,25 @@ renderTodo();
 
 function addNode (argument) {
 	var valInput = inputEl.value;
+	var erro = document.createElement('span');
+	erro.setAttribute('id', 'erro');
+	var textErro = document.createTextNode('O campo de texto não pode ser vazio!');
 
 	if (valInput !== '') {
 		todos.push(valInput);
+		if (document.getElementById('erro'))
+			document.getElementById('erro').remove();
+	} else {
+
+		if (document.getElementById('erro') < 1) {
+			erro.appendChild(textErro);
+			appEl.appendChild(erro);
+		}
+
 	}
 
 	inputEl.value = '';
+	inputEl.focus();
 
 	renderTodo();
 	saveToStorage();

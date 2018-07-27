@@ -61,3 +61,10 @@ input[type="button"] {
     background: mediumvioletred;
     cursor: pointer;
 }
+
+#erro {
+    color: #f22;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
